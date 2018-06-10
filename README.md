@@ -54,6 +54,15 @@ $ git revert f33a2bc -n #-nはコメント編集なし. -eコメント編集あ�
 $ git push -f origin master
 ```
 
+### add remote
+
+```bash
+$ git remote add origin
+$ git add .
+$ git commit -m "First commit"
+$ git push -f origin master
+```
+
 # h1 size
 
 ## h2 size
