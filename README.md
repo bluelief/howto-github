@@ -64,6 +64,13 @@ $ git commit -m "First commit"
 $ git push -f origin master
 ```
 
+### get git log
+
+```bash
+# add your .bashrc
+alias gitlog='git log --date=short --no-merges --pretty=format:"%cd %s %h (@%cn) "'
+```
+
 # h1 size
 
 ## h2 size
