@@ -57,7 +57,8 @@ $ git push -f origin master
 ### add remote
 
 ```bash
-$ git remote add origin
+$ git init
+$ git remote add origin https://github.com/userid/yourproject.git
 $ git add .
 $ git commit -m "First commit"
 $ git push -f origin master
