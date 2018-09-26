@@ -1,7 +1,9 @@
 # Private note
 private note
 
+
 ## How to use github
+
 
 ### basic usage
 
@@ -12,6 +14,7 @@ $ git commit -m "Something comment..."
 $ git push origin master
 ```
 
+
 ### branch
 
 ```bash
@@ -20,6 +23,7 @@ $ git branch develop
 $ git checkout develop
 ```
 
+
 ### merge
 
 ```bash
@@ -27,6 +31,7 @@ $ git checkout master
 $ git merge develop
 $ git push origin master
 ```
+
 
 ### add
 
@@ -38,6 +43,7 @@ $ git add *.py #py拡張子全て
 $ git add -A #更新ファイル全て
 ```
 
+
 ### reset
 
 ```bash
@@ -47,12 +53,23 @@ $ git commit --amend -m "Something comment..." #コミットの上書き
 $ git push -f origin master
 ```
 
+```bash
+$ git push -f origin HEAD^:master
+$ git reset --soft HEAD^
+$ # Fix a mistake
+$ git add something
+$ git commit -m "some comment"
+$ git push origin master
+```
+
+
 ### revert
 
 ```bash
 $ git revert f33a2bc -n #-nはコメント編集なし. -eコメント編集あり
 $ git push -f origin master
 ```
+
 
 ### add remote
 
@@ -64,12 +81,76 @@ $ git commit -m "First commit"
 $ git push -f origin master
 ```
 
+
+### pull and fetch
+
+```bash
+$ git branch
+feature
+develop
+master
+[develop] $ git pull # Update develop branch. fetch and merge on develop branch
+[master] $ # master branch is only fetched
+[master] $ git merge origin/master
+```
+
+
+### following repository
+
+```bash
+$ git clone https://github.com/user/project
+$ cd project
+$ git branch -a
+$ git remote add upstream https://github.com/author/project # Get from original project
+$ git fetch upstream
+$ git merge upstream/master
+```
+
+
 ### get git log
 
 ```bash
 # add your .bashrc
 alias gitlog='git log --date=short --no-merges --pretty=format:"%cd %s %h (@%cn) "'
 ```
+
+
+### .gitignore
+
+```bash
+    ammend = "!f () { git commit --ammend -m \"$1 ($default)\" $2;}; f"
+    cm = "!f () { git commit -m \"$1\" $2;}; f"
+```
+
+
+### diff log
+
+```bash
+#!/bin/sh
+
+AUTHOR="bluelief"
+
+LINES=$(git log --all --numstat --pretty="%H" --author="${AUTHOR}" --since="midnight" | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}')
+
+MESSAGE="[insertions, deletions]: \\n ${LINES}\\n"
+
+printf "${MESSAGE}"
+```
+
+`git log --all --numstat --pretty="%H" --author="bluelief" --since="" --until="" | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'`
+
+
+### git branch on terminal
+
+```bash
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
+# Tested on Ubuntu
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\e[1;32m\]$(parse_git_branch)\[\033[00m\]\$ '
+```
+
 
 # h1 size
 
