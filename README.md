@@ -43,6 +43,15 @@ $ git add *.py #py拡張子全て
 $ git add -A #更新ファイル全て
 ```
 
+### commit message
+
+```bash
+$ git commit -F- <<EOF
+> Some title
+> 
+> Problem: something
+> Solve: something
+```
 
 ### reset
 
@@ -115,7 +124,7 @@ alias gitlog='git log --date=short --no-merges --pretty=format:"%cd %s %h (@%cn)
 ```
 
 
-### .gitignore
+### .gitconfig
 
 ```bash
     ammend = "!f () { git commit --ammend -m \"$1 ($default)\" $2;}; f"
